@@ -154,7 +154,7 @@
 			<th class="rounded-company"></th>
 			<th class="rounded">Fecha</th>
 			<th class="rounded">Estado</th>
-			<th align="center" class="rounded-q4">Editar</th>
+			<th align="center" align="center" class="rounded-q4">Editar</th>
 		</tr>
 	</thead>
 	<tfoot>

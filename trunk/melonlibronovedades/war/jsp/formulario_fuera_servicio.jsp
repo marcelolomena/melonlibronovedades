@@ -1,10 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" media="all" href="../css/niceforms-default.css" />
 <link rel="stylesheet" type="text/css" href="../css/start/jquery-ui-1.8.13.custom.css" />
 <link rel="stylesheet" type="text/css" media="all" href="../css/validate.css" />
 <style type="text/css"> 
 body { font-size: 62.5%; }
-label { display: inline-block; width: 100px; }
-legend { padding: 0.5em; }
-fieldset fieldset label { display: block; }
 </style> 
 <script type="text/javascript" src="../js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery-ui-1.8.13.custom.min.js"></script>
@@ -26,15 +27,9 @@ fieldset fieldset label { display: block; }
 <script type="text/javascript">
 	
 	$(document).ready(function() {
+		init();
+		
 		$("input:button, input:submit").button();
-        $('body').append(
-                $('<div>').attr('id', 'loading').append(
-                    $('<img>').attr('src', '../images/ajax_loading.gif').attr('alt', 'Cargando...')
-                  ).css({
-                      position: 'fixed',
-                      display: 'none'
-                  })
-        );
         
 		$("#idUsuario").attr('value', idUsuario);
 
@@ -111,17 +106,33 @@ fieldset fieldset label { display: block; }
 </script>
 <body>   
 <div id="divFormVisita" style="display:none;">         
-<form id="visitaForm" style="margin-left:25px;margin-right:25px;width:90%">
+<form id="visitaForm">
 <input type="hidden" name="idUsuario" id="idUsuario" value=""></input>
 <input type="hidden" name="idListaEvento" id="idListaEvento" value=""></input> 
 <fieldset class="ui-widget ui-widget-content ui-corner-all">
 <legend class="ui-widget ui-widget-header ui-corner-all" id="titulo"></legend>
-<p><label for="fecha">Fecha:</label><input type="text" name="fecha" id="fecha" size="10" /></p>
-<p><label for="idResponsable">Responsable:</label><select name='idResponsable' id='idResponsable'></select></p>
-<p><label for="idEquipo">Equipo:</label><select name='idEquipo' id='idEquipo'></select></p>
-<p><label for="problema">Falla:</label><textarea name="problema" id="problema" rows="5" cols="50" maxlength="500"></textarea></p>
-<br>
-<p style="text-align:center"><input type="submit" name="submit" id="submit" value="Guardar" /></p>
+
+<dl>  
+<dt><label for="fecha">Fecha</label></dt>
+<dd><input type="text" name="fecha" id="fecha" size="10" /></dd>
+</dl>
+<dl>
+<dt><label for="idResponsable">Responsable</label></dt>
+<dd><select name='idResponsable' id='idResponsable'></select></dd>
+</dl>
+<dl>
+<dt><label for="idEquipo">Equipo</label></dt>
+<dd><select name='idEquipo' id='idEquipo'></select></dd>
+</dl>
+<dl>
+<dt><label for="problema">Falla</label></dt>
+<dd><textarea name="problema" id="problema" rows="5" cols="50" maxlength="500"></textarea></dd>
+</dl>
+<dl class="submit">
+<dt>
+<input type="submit" name="submit" id="submit" value="Guardar" />
+</dt>
+</dl>
 </fieldset>  
 </form>
 </div>

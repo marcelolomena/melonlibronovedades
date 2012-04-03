@@ -54,9 +54,10 @@ public class FueraServicioLNAction extends ActionSupport {
 			Long idUsuarioSesion=(Long)session.get("IdUsuario");
 			log.info("idUsuarioSesion este es el que vale : " + idUsuarioSesion);
 			log.info("idUsuario : " + idUsuario);			
-			//UsuarioLN usuario=UsuarioLNBO.editarUsuarioLN(idUsuario);
-			UsuarioLN usuario=UsuarioLNBO.editarUsuarioLN(String.valueOf(idUsuarioSesion));
-			FueraServicioLNBO.guardarFueraServicio(fecha,String.valueOf(usuario.getId()),
+			UsuarioLN usuario=UsuarioLNBO.editarUsuarioLN(idUsuario);
+			//UsuarioLN usuario=UsuarioLNBO.editarUsuarioLN(String.valueOf(idUsuarioSesion));//usuario logueado
+			//UsuarioLN usuario=UsuarioLNBO.editarUsuarioLN(String.valueOf(idUsuarioSesion));//usuario logueado
+			FueraServicioLNBO.guardarFueraServicio(fecha,idUsuario,
 					idResponsable, String.valueOf(usuario.getIdNegocio()), idEquipo, problema);
 		} catch (Exception e) {
 			log.error(e);

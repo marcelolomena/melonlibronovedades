@@ -28,6 +28,7 @@ public class FueraServicioLNDAO {
 
 	private static Log log = LogFactory.getLog(FueraServicioLNDAO.class);
 
+	@SuppressWarnings("unchecked")
 	public static List<ListaEventoLN> obtener(String idUsuario) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		UsuarioLN usuario = null;
