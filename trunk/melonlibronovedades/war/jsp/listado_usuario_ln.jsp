@@ -97,7 +97,6 @@
 	});
 
 	function editarUsuarioLVS(id){
-		//abre("/jsp/formulario_usuario_lvs.jsp?accion=editar&id="+id, "Editar Usuario xxx");
 		abreURL("/jsp/formulario_usuario_lvs.jsp?accion=editar&id="+id, "Editar Usuario", 30, 30, 30, 30);
 	}
 	function editarVisitaLVS(idUsuario,idVisita){
