@@ -22,8 +22,24 @@
 <script type="text/javascript" src="../js/home.js"></script>
 <script type="text/javascript">
 <%
-		out.print("var uid='" + (String)request.getAttribute("uid") + "';\n");
-		out.print("var perfil='" + (Character)request.getAttribute("perfil") + "';\n");			
+		String uid=(String)request.getAttribute("uid");
+		String ch=(String)request.getAttribute("perfil");
+		//System.out.println("var uid='" + uid + "'");
+		//System.out.println("var perfil='" + ch + "';");
+		
+		if(uid!=null){
+			out.print("var uid='" + uid + "';\n");
+		}else{
+			out.print("var uid='';\n");
+		}
+		
+		if(ch!=null){
+			out.print("var perfil='" + ch + "';\n");
+		}else{
+			out.print("var perfil='';\n");
+		}
+		
+					
 %>
 </script>
 </head>

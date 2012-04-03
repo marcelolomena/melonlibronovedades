@@ -43,15 +43,15 @@ public class UsuarioLNAction extends ActionSupport {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			HttpServletResponse response = ServletActionContext.getResponse();
 			UserService userService = UserServiceFactory.getUserService();
+			Map<String, Object> session = ActionContext.getContext().getSession();
 			User user = userService.getCurrentUser();
+			
 			if(user==null){
 				response.sendRedirect("/");
-				//throw new Exception("Debe primero autenticarse en google para ver LN");
 			}
+			
 			String mailusu=user.getEmail().toLowerCase();
-			log.info("mail del usuario : " + mailusu);
-
-			String root = context.getInitParameter("root");
+			log.info("mail del usuario google: " + mailusu);
 
 			usuarioList = UsuarioLNBO
 					.obtenerUsuarioPorEmailLVS(user.getEmail());
@@ -59,20 +59,21 @@ public class UsuarioLNAction extends ActionSupport {
 			if(usuarioList==null) throw new Exception("La lista de usuarios esta vacia");
 
 			if (!usuarioList.isEmpty() ) {
+				
 				usuarioLN = usuarioList.get(0);
 
 				if (user.getEmail().equals(usuarioLN.getEmail())) {
 
 					request.setAttribute("uid", String.valueOf(usuarioLN
 							.getId()));
-					request.setAttribute("perfil", Character.valueOf(usuarioLN
+					request.setAttribute("perfil", String.valueOf(usuarioLN
 							.getPerfil()));
-					Map<String, Object> session = ActionContext.getContext()
-							.getSession();
+					
 					session.put("logueado", "true");
 					session.put("IdNegocio", usuarioLN.getIdNegocio());
 					session.put("perfil", usuarioLN.getPerfil());
 					session.put("IdUsuario", usuarioLN.getId());
+					
 					log.info("usuarioLN.getPerfil(): " + usuarioLN.getPerfil());
 					retorno = ActionSupport.SUCCESS;
 				} else {
@@ -119,6 +120,8 @@ public class UsuarioLNAction extends ActionSupport {
 					addActionError("solo el usuario administrador (bernardo.palomo@melon.cl) puede ingresar por primera vez al sistema" );
 					retorno = ActionSupport.ERROR;
 				}
+				
+				
 			}
 
 		} catch (Exception e) {
