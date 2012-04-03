@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/freemarker-2.3.16.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/itextpdf-5.1.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/javassist-3.11.0.GA.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lucene-core-2.9.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lucene-snowball-2.9.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/ognl-3.0.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/serializer.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2-core-2.2.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2-jquery-plugin-3.0.2.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/struts2-json-plugin-2.2.3.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xalan.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xwork-core-2.2.3.jar"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

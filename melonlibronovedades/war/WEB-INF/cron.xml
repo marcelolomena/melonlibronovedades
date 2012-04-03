@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/reportediario</url>
+    <description>Mail de Fallas</description>
+    <schedule>every day 08:00</schedule>
+    <timezone>America/Santiago</timezone>
+    <target>reporte-fallas-diario</target>    
+  </cron>
+  <cron>
+    <url>/reportenovedadesdiario</url>
+    <description>Mail diario de novedades</description>
+    <schedule>every day 08:00</schedule>
+    <timezone>America/Santiago</timezone>
+    <target>reporte-novedades-diario</target>    
+  </cron>  
+</cronentries>

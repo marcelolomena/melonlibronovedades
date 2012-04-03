@@ -1,0 +1,98 @@
+div#divTableReporteMeta {
+	width: 80em;
+	padding: 0.3em;
+}
+table {
+	width: 100%;
+}
+table th {
+	padding: 8px;
+	font-weight: normal;
+	font-size: 13px;
+	color: #039;
+	background: #60c8f2;			  
+}
+table td {
+	padding: 8px;
+	font-weight: normal;
+	font-size: 10px;				
+	background: #ecf8fd;
+	border-top: 1px solid #fff;
+	color: #666699;;			  
+}			
+table th span {
+	float:right;
+}
+table tr.odd {
+	background-color: #FFFFFF;
+}
+			
+div#divTableReporteTema {
+	width: 70em;
+	padding: 0.3em;
+}
+table {
+	width: 100%;
+}
+table th {
+	padding: 0.3em;
+}
+table th span {
+	float:right;
+}
+table tr.odd {
+	background-color: #FFFFFF;
+}
+			
+div#divTableDetalleMetaUsuario {
+	width: 70em;
+	padding: 0.3em;
+}
+table {
+	width: 100%;
+}
+table th {
+	padding: 0.3em;
+}
+table th span {
+	float:right;
+}
+table tr.odd {
+	background-color: #FFFFFF;
+}
+
+div#divTableItem {
+	width: 50em;
+	padding: 0.3em;
+}
+table {
+	  width: 100%;
+	  font-size: 100%;
+}
+table th {
+  padding: 0.3em;
+}
+table th span {
+	  float:right;
+}
+table tr.odd {
+	  background-color: #FFFFFF;
+}
+
+div#_divTableItem {
+	width: 50em;
+	padding: 0.3em;
+}
+table {
+	  width: 100%;
+	  font-size: 100%;
+}
+table th {
+  padding: 0.3em;
+}
+table th span {
+	  float:right;
+}
+table tr.odd {
+	  background-color: #FFFFFF;
+}
