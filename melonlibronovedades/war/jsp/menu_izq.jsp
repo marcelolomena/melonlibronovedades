@@ -7,7 +7,8 @@
                         document.writeln('<li><a id=\"menu11\" href=\"#\">Turnos</a></li>');
                         document.writeln('<li><a id=\"menu12\" href=\"#\">Usuarios</a></li>');
                         document.writeln('<li><a id=\"menu13\" href=\"#\">Negocios</a></li>');
-                        document.writeln('<li><a id=\"menu14\" href=\"#\">Reportes</a></li>');
+                        document.writeln('<li><a id=\"menu32\" href=\"#\">Ingresar Novedad</a></li>');                        
+                        document.writeln('<li><a id=\"menu14\" href=\"#\">Reportes</a></li>');            
                         document.writeln('<li><a id=\"menu15\" href=\"#\">Resumen Día</a></li>');
                         document.writeln('</ul>');
                    		document.writeln('</div>');

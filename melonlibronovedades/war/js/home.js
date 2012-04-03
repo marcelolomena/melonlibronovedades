@@ -12,7 +12,7 @@ $(function () {
 	});	
 	$("#menu13").click(function(mievento) {
 		mievento.preventDefault();
-		 $('#der_contenido').load('/jsp/listado_negocio_ln.jsp');
+		$('#der_contenido').load('/jsp/listado_negocio_ln.jsp');
 	});
 	$("#menu14").click(function(mievento) {
 		mievento.preventDefault();
