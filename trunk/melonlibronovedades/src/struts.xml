@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<include file="struts-default.xml"></include>
+	<package name="jsp" namespace="/jsp" extends="struts-default,json-default">
+		<action name="ingreso" method="ingreso"
+			class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result name="success">/jsp/home.jsp</result>
+			<result name="error">/jsp/error.jsp</result>
+ 		</action>	
+		<action name="login" method="login"
+			class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result name="success">/jsp/home.jsp</result>
+			<result name="error">/jsp/error.jsp</result>
+ 		</action>
+		<action name="logout" method="logout"
+			class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result name="success">/jsp/salir.jsp</result>
+ 		</action> 				
+		<action name="guardarTipo" method="guardarTipo" class="cl.loso.melon.server.action.TipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="editarTipo" method="editarTipo" class="cl.loso.melon.server.action.TipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="borrarTipo" method="borrarTipo" class="cl.loso.melon.server.action.TipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="actualizarTipo" method="actualizarTipo" class="cl.loso.melon.server.action.TipoLNAction">
+			<result type="json"></result>
+		</action>		
+		<action name="obtenerTipo" method="obtenerTipo" class="cl.loso.melon.server.action.TipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="obtenerUsuario" method="obtenerUsuario" class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="guardarUsuario" method="guardarUsuario" class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="editarUsuario" method="editarUsuario" class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="actualizarUsuario" method="actualizarUsuario" class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="borrarUsuario" method="borrarUsuario" class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="nuevoUsuario" method="nuevoUsuario" class="cl.loso.melon.server.action.UsuarioLNAction">
+			<result type="json"></result>
+		</action>			
+		<action name="obtenerNegocio" method="obtenerNegocio" class="cl.loso.melon.server.action.NegocioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="guardarNegocio" method="guardarNegocio" class="cl.loso.melon.server.action.NegocioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="editarNegocio" method="editarNegocio" class="cl.loso.melon.server.action.NegocioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="actualizarNegocio" method="actualizarNegocio" class="cl.loso.melon.server.action.NegocioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="borrarNegocio" method="borrarNegocio" class="cl.loso.melon.server.action.NegocioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="obtenerEquipo" method="obtenerEquipo" class="cl.loso.melon.server.action.EquipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="guardarEquipo" method="guardarEquipo" class="cl.loso.melon.server.action.EquipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="editarEquipo" method="editarEquipo" class="cl.loso.melon.server.action.EquipoLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="actualizarEquipo" method="actualizarEquipo" class="cl.loso.melon.server.action.EquipoLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="borrarEquipo" method="borrarEquipo" class="cl.loso.melon.server.action.EquipoLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="obtenerNovedad" method="obtenerNovedad" class="cl.loso.melon.server.action.NovedadLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="guardarNovedad" method="guardarNovedad" class="cl.loso.melon.server.action.NovedadLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="editarNovedad" method="editarNovedad" class="cl.loso.melon.server.action.NovedadLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="actualizarNovedad" method="actualizarNovedad" class="cl.loso.melon.server.action.NovedadLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="borrarNovedad" method="borrarNovedad" class="cl.loso.melon.server.action.NovedadLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="ingresoNovedad" method="ingresoNovedad" class="cl.loso.melon.server.action.NovedadLNAction">
+			<result type="json"></result>
+		</action>				
+		<action name="obtenerLocalidades" method="obtenerLocalidades" class="cl.loso.melon.server.action.NegocioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="obtenerBitacora" method="obtenerBitacora" class="cl.loso.melon.server.action.BitacoraLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="guardarBitacora" method="guardarBitacora" class="cl.loso.melon.server.action.BitacoraLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="reporteHome" method="reporteHome" class="cl.loso.melon.server.action.NovedadesHomeLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="obtenerFueraServicio" method="obtenerFueraServicio" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="nuevoFueraServicio" method="nuevoFueraServicio" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="guardarFueraServicio" method="guardarFueraServicio" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="editarFueraServicio" method="editarFueraServicio" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>	
+		<action name="editarFueraServicioUsuario" method="editarFueraServicioUsuario" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="guardarFueraServicioUsuario" method="guardarFueraServicioUsuario" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="cerrarFueraServicioUsuario" method="cerrarFueraServicioUsuario" class="cl.loso.melon.server.action.FueraServicioLNAction">
+			<result type="json"></result>
+		</action>		
+		<action name="reporteFallas" method="reporteFallas" class="cl.loso.melon.server.action.ReporteLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="reporteNovedades" method="reporteNovedades" class="cl.loso.melon.server.action.ReporteLNAction">
+			<result type="json"></result>
+		</action>
+		<action name="obtenerEquipos" method="obtenerEquipos" class="cl.loso.melon.server.action.ReporteLNAction">
+			<result type="json"></result>
+		</action>		
+		<action name="reporteFallasPDF" method="reporteFallasPDF" class="cl.loso.melon.server.action.ReporteLNAction">
+			<result type="stream">
+			<param name="contentType">application/pdf</param>
+     		<param name="inputName">inputStream</param>
+			</result>
+		</action>				
+	</package>
+</struts>

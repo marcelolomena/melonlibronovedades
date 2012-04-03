@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes
+  autoGenerate="true">
+<datastore-index kind="NovedadLN" ancestor="true" source="manual">
+        <property name="fecha" direction="desc"/>
+    </datastore-index>  
+ <datastore-index kind="NovedadLN" ancestor="false" source="manual">
+        <property name="negocio" direction="asc"/>
+        <property name="fecha" direction="desc"/>
+    </datastore-index>  
+<datastore-index kind="BitacoraLN" ancestor="false" source="manual">
+        <property name="equipo" direction="asc"/>
+        <property name="fecha" direction="asc"/>
+        <property name="negocio" direction="asc"/>
+        <property name="comentario" direction="asc"/>
+    </datastore-index>  
+<datastore-index kind="BitacoraLN" ancestor="false" source="manual">
+        <property name="fecha" direction="asc"/>
+        <property name="comentario" direction="asc"/>
+    </datastore-index>  
+ <datastore-index kind="ComentarioLN" ancestor="true" source="manual">
+        <property name="comentarios_INTEGER_IDX" direction="asc"/>
+ </datastore-index>
+<datastore-index kind="BitacoraLN" ancestor="true" source="manual">
+        <property name="comentarios_INTEGER_IDX" direction="asc"/>
+</datastore-index>
+<datastore-index kind="BitacoraLN" ancestor="false" source="manual">
+        <property name="fecha" direction="desc"/>
+        <property name="equipoNombre" direction="asc"/>
+    </datastore-index>                 
+</datastore-indexes>

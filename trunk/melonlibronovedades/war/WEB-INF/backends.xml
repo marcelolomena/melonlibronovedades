@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<backends>
+	<backend name="reporte-novedades-diario">
+		<class>B2</class>
+		<options>
+			<dynamic>true</dynamic>
+			<public>false</public>
+		</options>
+	</backend>
+	<backend name="reporte-fallas-diario">
+		<class>B2</class>
+		<options>
+			<dynamic>true</dynamic>
+			<public>false</public>
+	</options>
+	</backend>		
+</backends>

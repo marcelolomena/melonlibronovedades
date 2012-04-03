@@ -1,0 +1,32 @@
+.login_form{
+width:600px;
+height:250px;
+background:url(../images/login_bg.png) no-repeat center top;
+margin:20px 0 0 145px;
+float:left;
+padding:0px 0 0 0px;
+}
+.form{
+width:600px;
+float:left;
+clear:both;
+}
+fieldset { border:none; clear:both;}
+label {font-size:11px; font-weight:bold; color:#666;}
+label a{font-size:11px; font-weight:bold; color:#666;}
+dl {clear:both; width:600px;}
+dl.submit {clear:both; width:500px; text-align:center; padding:0 0 0 90px;}
+dt {float:left; display:block; text-align:left; width:170px; line-height:34px; }
+dd {float:left; width:400px; line-height:34px; margin:2px 0;padding:5px 0;}
+     
+label.check_label{
+padding:0 0 0 10px;
+line-height:32px;
+}
+fieldset input{
+float:left;
+font-size: 0.8em;
+-moz-border-radius:5px;
+border-radius: 5px;
+-webkit-border-radius: 5px;    
+}
