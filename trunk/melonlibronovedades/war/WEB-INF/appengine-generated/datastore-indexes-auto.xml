@@ -1,19 +1,23 @@
-<!-- Indices written at Mon, 2 Apr 2012 19:26:23 CLT -->
+<!-- Indices written at Mon, 2 Apr 2012 23:37:29 CLT -->
 
 <datastore-indexes>
 
-    <!-- Used 2 times in query history -->
-    <datastore-index kind="ListaEventoLN" ancestor="true" source="auto">
-        <property name="eventos_INTEGER_IDX" direction="asc"/>
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="BitacoraLN" ancestor="false" source="auto">
+        <property name="negocio" direction="asc"/>
+        <property name="fecha" direction="desc"/>
     </datastore-index>
 
-    <!-- Used 2 times in query history -->
-    <datastore-index kind="NovedadLN" ancestor="true" source="auto">
-        <property name="novedades_INTEGER_IDX" direction="asc"/>
+    <!-- Used 6 times in query history -->
+    <datastore-index kind="BitacoraLN" ancestor="false" source="auto">
+        <property name="fecha" direction="asc"/>
+        <property name="negocio" direction="asc"/>
+        <property name="turno" direction="asc"/>
+        <property name="comentario" direction="asc"/>
     </datastore-index>
 
     <!-- Used 1 time in query history -->
-    <datastore-index kind="BitacoraLN" ancestor="false" source="auto">
+    <datastore-index kind="NovedadLN" ancestor="true" source="auto">
         <property name="negocio" direction="asc"/>
         <property name="fecha" direction="desc"/>
     </datastore-index>

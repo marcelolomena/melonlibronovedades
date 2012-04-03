@@ -627,8 +627,8 @@ function editarVisitaLVS2(idUsuario,idVisita){
 						filaEquipo +="<div id=\"tabs-" + value.equipo + "\">";
 						filaEquipo +="<input type=\"hidden\" id=\"tab" + value.equipo + "Selected\"/>";
 						//filaEquipo +="<div style=\"float:left;\"><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.equipo + "\" id=\"comentario" + value.equipo + "\">" + value.comentario+ "</textarea></div>";
-						filaEquipo +="<p><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.equipo + "\" id=\"comentario" + value.equipo + "\">" + value.comentario+ "</textarea></p>";
-						filaEquipo +="<div id=\"file-uploader-" + value.equipo + "\"></div>"				
+						filaEquipo +="<p><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.equipo + "\" id=\"comentario" + value.equipo + "\">" + value.comentario+ "</textarea>";
+						filaEquipo +="<div id=\"file-uploader-" + value.equipo + "\"></div></p>"				
 						filaEquipo +="</div>";	
 					});			
 				}
@@ -724,11 +724,9 @@ function ingresoNovedad(idUsuario){
 				$.each(result.equipoList,function(index, value){			
 					filaEquipo +="<div id=\"tabs-" + value.key.id + "\">";
 					filaEquipo +="<input type=\"hidden\" id=\"tab" + value.key.id + "Selected\"/>";
-					filaEquipo +="<div style=\"float:left;\"><textarea maxlength=\"500\" rows=\"10\" cols=\"50\" name=\"comentario_" + value.key.id + "\" id=\"comentario" + value.key.id + "\"></textarea></div>";
-					filaEquipo +="<div style=\"float:left;\" id=\"file-uploader-" + value.key.id + "\">"				
-					filaEquipo +="</div>";					
+					filaEquipo +="<p><textarea maxlength=\"500\" rows=\"10\" cols=\"50\" name=\"comentario_" + value.key.id + "\" id=\"comentario" + value.key.id + "\"></textarea></p>";
+					filaEquipo +="<div style=\"float:left;\" id=\"file-uploader-" + value.key.id + "\"></div>"				
 					filaEquipo +="</div>";	
-
 				});				
 				
 				$.each(result.tipoList,function(index, value){
@@ -1361,7 +1359,7 @@ function mostrarComboEquipo(idUsuario){
         fx: function(result){
         try{
 			var filaEquipo = "<option value=\"0\" selected>Todos</option>";
-			if(!$.isEmptyObject(result)){
+			if(!$.isEmptyObject(result.equipoList)){
 				$.each(result.equipoList,function(index, value){
 					filaEquipo += "<option value=\"" + value.key.id + "\">" + value.nombre + "</option>";
 				});
