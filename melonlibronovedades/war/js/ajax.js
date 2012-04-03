@@ -1028,7 +1028,7 @@ function listarFueraLN(pariente,idUsuario){
 	 			}else{
 	 				fila+="<td>Resuelto</td>";
 	 			}
-	 			fila+="<td><a href='#' onclick=\"editarFueraServicio(" + idUsuario + "," + value.key.id + "," + value.idpadre+"); return false;\"><img src='../images/user_edit.png' alt='' title='' border='0' /></a></td>";
+	 			fila+="<td align=\"center\"><a href='#' onclick=\"editarFueraServicio(" + idUsuario + "," + value.key.id + "," + value.idpadre+"); return false;\"><img src='../images/user_edit.png' alt='' title='' border='0' /></a></td>";
 	 			fila+="</tr>";  		 		   
 			});
 				if(pariente){

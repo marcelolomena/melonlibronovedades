@@ -15,6 +15,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.google.appengine.api.datastore.Entity;
+
+import cl.loso.melon.server.model.NegocioLN;
+import cl.loso.melon.server.negocio.NegocioLNBO;
 import cl.loso.melon.server.util.Util;
 
 public class HomeServlet extends HttpServlet {
@@ -34,8 +37,10 @@ public class HomeServlet extends HttpServlet {
 		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 		SimpleDateFormat sdfdiv=new SimpleDateFormat("dd_MM_yyyy");
 		Long elNegocio=(Long)session.getAttribute("IdNegocio");
+
 		//logger.info("elNegocio : " + elNegocio);		
 		try {
+			String txtNegocio=((NegocioLN)NegocioLNBO.editarNegocioLN(String.valueOf(elNegocio.longValue() ) ) ).getNombre();
 			StringBuilder div = new StringBuilder("");		
 			
 			Date fechaIni=Util.hacetreintadias();
@@ -70,7 +75,7 @@ public class HomeServlet extends HttpServlet {
 				Date lafecha=fechas.next();
 				String fechaTxt = sdf.format(lafecha);
 				String fechadiv = sdfdiv.format(lafecha);
-				div.append("<h3><a href=\"#\">Novedad del dia " +fechaTxt+ "</a></h3>");
+				div.append("<h3><a href=\"#\">Novedad " + txtNegocio + " dia : " +fechaTxt+ "</a></h3>");
 				div.append("<div>");
 				div.append("<div id=\"print_" + fechadiv + "\"><a href=\"#\" onclick=\"imprimir('div#print_" + fechadiv + "');\" ><img src=\"../images/print.gif\" alt=\"imprimir\" width=\"16\" height=\"16\" border=\"0\" /></A>");
 				
