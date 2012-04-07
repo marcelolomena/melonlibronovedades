@@ -1,5 +1,12 @@
 $(document).ready(function() {
-	init();
+    $('body').append(
+            $('<div>').attr('id', 'loading').append(
+                $('<img>').attr('src', '../images/ajax_loading.gif').attr('alt', 'Cargando...')
+              ).css({
+                  position: 'fixed',
+                  display: 'none'
+              })
+    );
 });
 $(function () {
 	$("#menu11").click(function(mievento) {

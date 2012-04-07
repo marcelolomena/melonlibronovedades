@@ -23,7 +23,15 @@
 <script type="text/javascript" src="../js/ajax.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	init();
+    $('body').append(
+            $('<div>').attr('id', 'loading').append(
+                $('<img>').attr('src', '../images/ajax_loading.gif').attr('alt', 'Cargando...')
+              ).css({
+                  position: 'fixed',
+                  display: 'none'
+              })
+    );	
+	
     $("#divReporteMeta").show("slow", function(){	
     	$("#fechaini").val(hoydia());
     	$("#fechater").val(hoydia());

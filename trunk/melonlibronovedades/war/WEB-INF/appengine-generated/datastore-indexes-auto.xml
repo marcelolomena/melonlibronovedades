@@ -1,14 +1,14 @@
-<!-- Indices written at Tue, 3 Apr 2012 08:05:19 CLT -->
+<!-- Indices written at Fri, 6 Apr 2012 20:15:57 CLT -->
 
 <datastore-indexes>
 
-    <!-- Used 2 times in query history -->
+    <!-- Used 1 time in query history -->
     <datastore-index kind="BitacoraLN" ancestor="false" source="auto">
         <property name="negocio" direction="asc"/>
         <property name="fecha" direction="desc"/>
     </datastore-index>
 
-    <!-- Used 24 times in query history -->
+    <!-- Used 12 times in query history -->
     <datastore-index kind="BitacoraLN" ancestor="false" source="auto">
         <property name="fecha" direction="asc"/>
         <property name="negocio" direction="asc"/>
