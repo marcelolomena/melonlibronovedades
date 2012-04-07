@@ -3,6 +3,7 @@
   <application>melonlibronovedades</application>
   <version>2</version>
  <threadsafe>true</threadsafe>
+ 	<precompilation-enabled>true</precompilation-enabled>
   <!--
     By default, App Engine sends requests serially to a given web server.
     To allow App Engine to send multiple requests in parallel specify:
