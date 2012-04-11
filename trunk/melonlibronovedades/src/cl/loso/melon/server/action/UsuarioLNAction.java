@@ -68,20 +68,22 @@ public class UsuarioLNAction extends ActionSupport {
 							.getId()));
 					request.setAttribute("perfil", String.valueOf(usuarioLN
 							.getPerfil()));
-					
+					Long usrId=usuarioLN.getId();
 					session.put("logueado", "true");
 					session.put("IdNegocio", usuarioLN.getIdNegocio());
 					session.put("perfil", usuarioLN.getPerfil());
-					session.put("IdUsuario", usuarioLN.getId());
-					/*
-					String txtNegocio=((NegocioLN)NegocioLNBO.editarNegocioLN(String.valueOf(usuarioLN.getId()))).getNombre();
+					session.put("IdUsuario",usrId);
+
+					UsuarioLN usuario=UsuarioLNBO.editarUsuarioLN(String.valueOf(usrId));
+					NegocioLN negocio=NegocioLNBO.editarNegocioLN(String.valueOf(usuario.getIdNegocio()));
+
+					String txtNegocio=negocio.getNombre();
 					if(txtNegocio!=null){
 						session.put("txtNegocio", txtNegocio);
 					}else{
 						session.put("txtNegocio", "sin negocio");
 					}
-					*/
-					
+
 					
 					log.info("usuarioLN.getPerfil(): " + usuarioLN.getPerfil());
 					retorno = ActionSupport.SUCCESS;
@@ -151,6 +153,8 @@ public class UsuarioLNAction extends ActionSupport {
 		session.remove("IdNegocio");
 		session.remove("IdUsuario");
 		session.remove("perfil");	
+		session.remove("txtNegocio");
+		
 
 		if (!session.containsKey("IdNegocio")) {
 			log.info("no hay IdNegocio");

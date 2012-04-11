@@ -1065,7 +1065,7 @@ function CargarFueraServicio(idUsuario){
 						filaEquipo += "<option value=\"" + value.key.id + "\">" + value.nombre + "</option>";
 				});
 				$.each(result.usuarioList,function(indice, value){
-					filaUsuario += "<option value=\"" + value.id + "\">" + value.nombres + "</option>";
+					filaUsuario += "<option value=\"" + value.id + "\">" + value.email + "</option>";
 				});	
 			}else{
 				Alerta('no hay datos');

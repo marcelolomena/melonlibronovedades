@@ -75,12 +75,13 @@ public class ReporteLNAction extends ActionSupport {
 
 	public String reporteFallasPDF() {
 		try {
-			Map<String, Object> session = ActionContext.getContext().getSession();
+
 			PdfPTable tabla = null;
 			Document document = new Document();
 
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			PdfWriter writer = PdfWriter.getInstance(document, baos);
+			Map<String, Object> session = ActionContext.getContext().getSession();
 
 			HeaderFooter event = new HeaderFooter((String)session.get("txtNegocio"));
 			writer.setPageEvent(event);
@@ -334,7 +335,7 @@ public class ReporteLNAction extends ActionSupport {
 
                 Font catFont = new Font(Font.FontFamily.HELVETICA, 16,
             			Font.BOLD);
-                textCell = new PdfPCell(new Phrase("Reporte de Novedades",catFont));
+                textCell = new PdfPCell(new Phrase("Reporte de Novedades: " + negocio,catFont));
                 textCell.setBorder(Rectangle.NO_BORDER);
                 head.addCell(textCell);
 

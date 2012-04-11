@@ -8,6 +8,7 @@
                         document.writeln('<li><a id=\"menu12\" href=\"#\">Usuarios</a></li>');
                         document.writeln('<li><a id=\"menu13\" href=\"#\">Negocios</a></li>');
                         document.writeln('<li><a id=\"menu32\" href=\"#\">Ingresar Novedad</a></li>'); 
+                        document.writeln('<li><a id=\"menu41\" href=\"#\">Ingresar Fuera de Servicio</a></li>'); 
                         document.writeln('</ul>');
                    		document.writeln('</div>');
                     	document.writeln('<a class=\"menuitem submenuheader\" href=\"\">Reportes</a>');

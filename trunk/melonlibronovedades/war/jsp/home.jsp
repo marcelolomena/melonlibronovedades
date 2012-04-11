@@ -24,8 +24,7 @@
 <%
 		String uid=(String)request.getAttribute("uid");
 		String ch=(String)request.getAttribute("perfil");
-		//System.out.println("var uid='" + uid + "'");
-		//System.out.println("var perfil='" + ch + "';");
+		Long uidSesion=(Long)session.getAttribute("IdUsuario");
 		
 		if(uid!=null){
 			out.print("var uid='" + uid + "';\n");
@@ -38,6 +37,12 @@
 		}else{
 			out.print("var perfil='';\n");
 		}
+		
+		if(uidSesion!=null){
+			out.print("var uidSesion='" + uidSesion.intValue() + "';\n");
+		}else{
+			out.print("var uidSesion='';\n");
+		}		
 		
 					
 %>

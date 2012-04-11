@@ -40,6 +40,11 @@ $(function () {
 		mievento.preventDefault();
 		$('#der_contenido').load('/jsp/listado_novedades_usuario.jsp?idUsuario='+uid);
 	});
+	$("#menu41").click(function(mievento) {
+		mievento.preventDefault();
+		$('#der_contenido').load('/jsp/listado_fueraservicio_administrador.jsp?idUsuario='+uidSesion);
+	});	
+	
 	$("#der_contenido").show("slow", function(){
 		repoHome("/novedadeshome","#novedades");
     });	
