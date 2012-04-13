@@ -29,8 +29,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.ServletActionContext;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -364,9 +362,8 @@ public class ReporteNovedadesDiario extends HttpServlet {
 				PdfPTable head = new PdfPTable(2);
 				float[] widths = new float[] { 1f, 4f };
 				head.setWidths(widths);
-
-				ServletContext context = ServletActionContext
-						.getServletContext();
+				ServletContext context = getServletContext();
+				
 				String relativeWebPath = "/images/logo_melon.gif";
 				String absoluteDiskPath = context.getRealPath(relativeWebPath);
 				Image headImage = Image.getInstance(absoluteDiskPath);

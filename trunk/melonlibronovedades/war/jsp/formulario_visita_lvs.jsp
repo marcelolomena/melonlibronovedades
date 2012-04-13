@@ -38,7 +38,14 @@ body { font-size: 62.5%; }
 </script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		init();
+	    $('body').append(
+	            $('<div>').attr('id', 'loading').append(
+	                $('<img>').attr('src', '../images/ajax_loading.gif').attr('alt', 'Cargando...')
+	              ).css({
+	                  position: 'fixed',
+	                  display: 'none'
+	              })
+	    );	
 		$("input:button, input:submit").button();
 	      $('textarea[maxlength]').keyup(function () {
 	          var limit = parseInt($(this).attr('maxlength'));
