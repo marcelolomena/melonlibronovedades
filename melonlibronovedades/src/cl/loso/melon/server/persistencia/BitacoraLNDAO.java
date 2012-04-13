@@ -234,7 +234,7 @@ public class BitacoraLNDAO {
 					bitacoraList.add(new BitacoraLN(entity));
 				}
 			}
-			if(bitacoraList.isEmpty())log.info("no hay novedades");
+			if(bitacoraList.isEmpty())log.info("no hay novedades para el negocio " + idNegocio);
 		} catch (Exception e) {
 			log.error("DAO obtenerNovedadHome2:" + e.getMessage());
 		}
