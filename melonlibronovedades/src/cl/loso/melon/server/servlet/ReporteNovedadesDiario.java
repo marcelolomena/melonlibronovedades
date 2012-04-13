@@ -24,10 +24,14 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -35,16 +39,24 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.ExceptionConverter;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 import cl.loso.melon.server.model.BitacoraLN;
+import cl.loso.melon.server.model.NegocioLN;
 import cl.loso.melon.server.model.UsuarioLN;
+import cl.loso.melon.server.negocio.NegocioLNBO;
 import cl.loso.melon.server.persistencia.BitacoraLNDAO;
 import cl.loso.melon.server.persistencia.UsuarioLNDAO;
+import cl.loso.melon.server.util.Util;
 
 public class ReporteNovedadesDiario extends HttpServlet {
 	/**
@@ -62,7 +74,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		doPost(req, res);
+		mandaCorreo(req, res);
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
@@ -125,8 +137,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 				DatastoreService datastore = DatastoreServiceFactory
 						.getDatastoreService();
 
-				com.google.appengine.api.datastore.Query q = new com.google.appengine.api.datastore.Query(
-						UsuarioLN.class.getSimpleName());
+				Query q = new Query(UsuarioLN.class.getSimpleName());
 
 				q.addFilter("correo", FilterOperator.EQUAL, new Boolean(true));
 
@@ -144,7 +155,6 @@ public class ReporteNovedadesDiario extends HttpServlet {
 
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 				String fechadeayer = sdf.format(ayer);
-				
 
 				for (Entity entity : entities) {
 					Key llave = (Key) entity.getKey();
@@ -178,7 +188,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 					// Send the message
 					Transport.send(message);
 				}
-			}else{
+			} else {
 				log.info("no hay novedades de ayer");
 			}
 		} catch (Exception ex) {
@@ -189,6 +199,208 @@ public class ReporteNovedadesDiario extends HttpServlet {
 			} catch (Exception ignored) {
 			}
 		}
+	}
+
+	public void mandaCorreo(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+
+		PdfPTable tabla = null;
+		List<BitacoraLN> bitacoraList;
+
+		try {
+
+			Iterable<Entity> usuarios = Util.listObjectEntities("UsuarioLN",
+					"correo", new Boolean(true));
+
+			for (Entity usuario : usuarios) {
+				Long idNegocio = (Long) usuario.getProperty("idNegocio");
+				String email = (String) usuario.getProperty("email");
+				String nombres =(String) usuario.getProperty("nombres");
+				String apepa =(String) usuario.getProperty("apepa");
+				
+				NegocioLN negocio = NegocioLNBO.editarNegocioLN(String
+						.valueOf(idNegocio.longValue()));
+				String txtNegocio = negocio.getNombre();
+				bitacoraList = BitacoraLNDAO.obtenerNovedadesAyer(idNegocio);
+
+				if (!bitacoraList.isEmpty()) {
+
+					Document document = new Document();
+
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					PdfWriter writer = PdfWriter.getInstance(document, baos);
+
+					Cabecera event = new Cabecera(txtNegocio);
+					writer.setPageEvent(event);
+
+					document.open();
+
+					Iterator<BitacoraLN> iteNovedadesfallas = bitacoraList
+							.iterator();
+
+					String[] headers = new String[] { "Fecha", "Usuario",
+							"Turno", "Equipo", "Novedad" };
+					tabla = new PdfPTable(headers.length);
+					tabla.setWidthPercentage(100);
+
+					float[] widths = new float[] { 2f, 2f, 1f, 2f, 5f };
+
+					tabla.setWidths(widths);
+
+					for (int i = 0; i < headers.length; i++) {
+						String header = headers[i];
+						PdfPCell cell = new PdfPCell();
+						cell.setGrayFill(0.9f);
+						cell.setPhrase(new Phrase(header.toUpperCase(),
+								new Font(FontFamily.HELVETICA, 10, Font.BOLD)));
+						tabla.addCell(cell);
+					}
+					tabla.completeRow();
+					while (iteNovedadesfallas.hasNext()) {
+
+						BitacoraLN bitacora = iteNovedadesfallas.next();
+						PdfPCell cell0 = new PdfPCell();
+						PdfPCell cell1 = new PdfPCell();
+						PdfPCell cell2 = new PdfPCell();
+						PdfPCell cell3 = new PdfPCell();
+						PdfPCell cell4 = new PdfPCell();
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"dd/MM/yyyy");
+						String fecha = sdf.format(bitacora.getFecha());
+						cell0.setPhrase(new Phrase(fecha, new Font(
+								FontFamily.HELVETICA, 8, Font.NORMAL)));
+						if (bitacora.getUsuarioNombre() != null) {
+							cell1.setPhrase(new Phrase(bitacora
+									.getUsuarioNombre(), new Font(
+									FontFamily.HELVETICA, 8, Font.NORMAL)));
+						} else {
+							cell1.setPhrase(new Phrase("", new Font(
+									FontFamily.HELVETICA, 8, Font.NORMAL)));
+						}
+						cell2.setPhrase(new Phrase(bitacora.getTurnoNombre(),
+								new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
+						cell3.setPhrase(new Phrase(bitacora.getEquipoNombre(),
+								new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
+						cell4.setPhrase(new Phrase(bitacora.getComentario(),
+								new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
+						tabla.addCell(cell0);
+						tabla.addCell(cell1);
+						tabla.addCell(cell2);
+						tabla.addCell(cell3);
+						tabla.addCell(cell4);
+						tabla.completeRow();
+					}
+
+					document.add(tabla);
+
+					document.close();
+
+					byte[] pdf = baos.toByteArray();
+					Properties props = new Properties();
+					Session session = Session.getDefaultInstance(props, null);
+
+					Calendar cal = new GregorianCalendar();
+					cal.add(Calendar.DATE, -1);
+					Date ayer = cal.getTime();
+
+					SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat sdf2 = new SimpleDateFormat("dd_MM_yyyy");
+					String fechadeayer = sdf.format(ayer);
+					String fechadeayer2 = sdf2.format(ayer);
+
+					// Define message
+					Message message = new MimeMessage(session);
+					message.setFrom(new InternetAddress(from));
+					message.addRecipient(Message.RecipientType.TO,
+							new InternetAddress(email));
+					message.setSubject("Novedades del " + fechadeayer);
+					// Create the message part
+					BodyPart messageBodyPart = new MimeBodyPart();
+					// Fill the message
+					messageBodyPart
+							.setText("Estimado " + nombres + " " + apepa + ", se adjuntan las novedades del dia " + fechadeayer);
+
+					Multipart multipart = new MimeMultipart();
+					multipart.addBodyPart(messageBodyPart);
+					// Part two is attachment
+					messageBodyPart = new MimeBodyPart();
+					DataSource source = new ByteArrayDataSource(pdf,
+							"application/pdf");
+					messageBodyPart.setDataHandler(new DataHandler(source));
+					messageBodyPart.setFileName("novedades_"+fechadeayer2+".pdf");
+					messageBodyPart.setDisposition(Part.ATTACHMENT);
+					multipart.addBodyPart(messageBodyPart);
+					// Put parts in message
+					message.setContent(multipart);
+					// Send the message
+					Transport.send(message);
+
+				}
+
+			}
+
+		} catch (Exception e) {
+			log.severe(e.getMessage());
+		}
 
 	}
+
+	class Cabecera extends PdfPageEventHelper {
+		private String negocio;
+
+		public Cabecera(String negocio) {
+			this.negocio = negocio;
+		}
+
+		public void onStartPage(PdfWriter writer, Document document) {
+
+			try {
+
+				Rectangle page = document.getPageSize();
+
+				PdfPCell imageCell = null;
+				PdfPCell textCell = null;
+
+				PdfPTable head = new PdfPTable(2);
+				float[] widths = new float[] { 1f, 4f };
+				head.setWidths(widths);
+
+				ServletContext context = ServletActionContext
+						.getServletContext();
+				String relativeWebPath = "/images/logo_melon.gif";
+				String absoluteDiskPath = context.getRealPath(relativeWebPath);
+				Image headImage = Image.getInstance(absoluteDiskPath);
+				headImage.scaleToFit(75, 75);
+
+				imageCell = new PdfPCell(headImage);
+				imageCell.setBorder(Rectangle.NO_BORDER);
+				head.addCell(imageCell);
+
+				Font catFont = new Font(Font.FontFamily.HELVETICA, 16,
+						Font.BOLD);
+				textCell = new PdfPCell(new Phrase("Reporte de Novedades: "
+						+ negocio, catFont));
+				textCell.setBorder(Rectangle.NO_BORDER);
+				head.addCell(textCell);
+
+				head.setTotalWidth(page.getWidth() - document.leftMargin()
+						- document.rightMargin());
+
+				head.writeSelectedRows(
+						0,
+						-1,
+						document.leftMargin(),
+						page.getHeight() - document.topMargin()
+								+ head.getTotalHeight(),
+						writer.getDirectContent());
+				document.add(new Paragraph("\n"));
+
+			} catch (Exception de) {
+				log.severe(de.getMessage());
+				throw new ExceptionConverter(de);
+			}
+		}
+
+	}
+
 }

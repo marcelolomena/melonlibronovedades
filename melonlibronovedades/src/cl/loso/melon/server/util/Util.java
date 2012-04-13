@@ -129,6 +129,20 @@ public class Util {
 	 * @return List all entities of a kind from the cache or datastore (if not
 	 *         in cache) with the specified properties
 	 */
+	
+
+	public static Iterable<Entity> listObjectEntities(String kind, String searchBy,
+			Object searchFor) {
+
+		Query q = new Query(kind);
+		if (searchFor != null) {
+			q.addFilter(searchBy, FilterOperator.EQUAL, searchFor);
+		}
+		PreparedQuery pq = datastore.prepare(q);
+
+		return pq.asIterable();
+	}
+	
 	public static Iterable<Entity> listEntities(String kind, String searchBy,
 			String searchFor) {
 
@@ -140,6 +154,15 @@ public class Util {
 		//logger.info(pq.toString());
 		return pq.asIterable();
 	}
+	
+	public static Iterable<Entity> listAllEntities(String kind) {
+
+		Query q = new Query(kind);
+
+		PreparedQuery pq = datastore.prepare(q);
+
+		return pq.asIterable();
+	}	
 
 	/**
 	 * Get the list of children from a parent key in the entity group
