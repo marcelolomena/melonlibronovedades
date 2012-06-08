@@ -21,6 +21,8 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Text;
+
 import cl.loso.melon.server.gae.PMF;
 import cl.loso.melon.server.model.BitacoraLN;
 import cl.loso.melon.server.model.ImagenLN;
@@ -187,7 +189,7 @@ public class NovedadLNDAO {
 				it.setFecha(fecha);
 				it.setTurno(idTurno);
 				it.setTurnoNombre(_turnoNombre);
-				it.setComentario(ht.get(it.getEquipo()));
+				it.setComentario(new Text(ht.get(it.getEquipo())));
 			}
 			tx.commit();
 		} catch (Exception e) {
@@ -313,8 +315,8 @@ public class NovedadLNDAO {
 
 			List<Entity> entities = datastore.prepare(q).asList(fetchOptions);
 			for (Entity entity : entities) {
-				String comentario = (String) entity.getProperty("comentario");
-				if (comentario != null && comentario.trim().length()>0) {
+				Text comentario = (Text) entity.getProperty("comentario");
+				if (comentario.getValue() != null && comentario.getValue().trim().length()>0) {
 					bitacoraList.add(new BitacoraLN(entity));
 				}
 			}

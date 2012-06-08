@@ -220,7 +220,7 @@ public class Util {
 		Query query = new Query("BitacoraLN");
 		query.addFilter("turno", FilterOperator.EQUAL, turno);
 		query.addFilter("fecha", FilterOperator.EQUAL, fecha);
-		query.addFilter("comentario", FilterOperator.NOT_EQUAL, "");
+		//query.addFilter("comentario", FilterOperator.NOT_EQUAL, null);
 		query.addFilter("negocio", FilterOperator.EQUAL, negocio);
 		PreparedQuery pq = datastore.prepare(query);
 		return pq.asIterable();
@@ -249,7 +249,7 @@ public class Util {
 	public static Iterable<Entity> listNovedades(Date fecha,Long negocio) {
 		Query query = new Query("BitacoraLN");
 		query.addFilter("fecha", FilterOperator.EQUAL, fecha);
-		query.addFilter("comentario", FilterOperator.NOT_EQUAL, "");
+		//query.addFilter("comentario", FilterOperator.NOT_EQUAL, "");
 		query.addFilter("negocio", FilterOperator.EQUAL, negocio);
 		PreparedQuery pq = datastore.prepare(query);
 		return pq.asIterable();
@@ -260,7 +260,7 @@ public class Util {
 		query.addFilter("fecha", FilterOperator.EQUAL, fecha);
 		query.addFilter("equipo", FilterOperator.EQUAL, equipoId);
 		query.addFilter("negocio", FilterOperator.EQUAL, negocioId);
-		query.addFilter("comentario", FilterOperator.NOT_EQUAL, "");
+		//query.addFilter("comentario", FilterOperator.NOT_EQUAL, "");
 		//logger.info("la query : " + query.toString());
 		PreparedQuery pq = datastore.prepare(query);
 		

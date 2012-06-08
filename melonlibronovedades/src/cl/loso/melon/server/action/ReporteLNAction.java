@@ -186,7 +186,7 @@ public class ReporteLNAction extends ActionSupport {
 							new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
 					cell3.setPhrase(new Phrase(bitacora.getEquipoNombre(),
 							new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
-					cell4.setPhrase(new Phrase(bitacora.getComentario(),
+					cell4.setPhrase(new Phrase(bitacora.getComentario().getValue(),
 							new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
 					tabla.addCell(cell0);
 					tabla.addCell(cell1);

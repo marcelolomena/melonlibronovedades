@@ -17,6 +17,7 @@ import cl.loso.melon.server.model.TipoLN;
 import cl.loso.melon.server.model.UsuarioLN;
 import cl.loso.melon.server.persistencia.NovedadLNDAO;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Text;
 
 public class NovedadLNBO {
 	private static Log log = LogFactory.getLog(NovedadLNBO.class);
@@ -79,7 +80,9 @@ public class NovedadLNBO {
 								.editarUsuarioLN(idUsuario)).getIdNegocio()),
 						String.valueOf(idEquipo));
 				String comentario = ht.get(idEquipo);
-				comentarios.add(new BitacoraLN(fecha_novedad, comentario,
+				Text texto=new Text(comentario);
+				
+				comentarios.add(new BitacoraLN(fecha_novedad, texto,
 						idEquipo, equipo.getNombre(), turno.getId(), turno
 								.getDescripcion(), negocio.getId(), negocio
 								.getNombre(),usuario.getNombres() + " " + usuario.getApepa() + " " + usuario.getApema()));

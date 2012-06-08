@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Text;
 
 import cl.loso.melon.server.model.NegocioLN;
 import cl.loso.melon.server.negocio.NegocioLNBO;
@@ -108,7 +109,7 @@ public class HomeServlet extends HttpServlet {
 						int k=1;
 						//String usuarioAnterior="";
 						for(Entity equipo:equipos){
-							String comentario=(String)equipo.getProperty("comentario");
+							Text comentario=(Text)equipo.getProperty("comentario");
 							String usuarioNombre=(String)equipo.getProperty("usuarioNombre");
 							String equipoNombre=(String)equipo.getProperty("equipoNombre");
 							/*
@@ -116,12 +117,15 @@ public class HomeServlet extends HttpServlet {
 								usuarioNombre="";
 							}
 							*/
+							if(comentario.getValue()!=null && comentario.getValue().trim().length()>0) {
 							
-							div.append("<tr id=\"node-" + String.valueOf(i)+String.valueOf(j) + String.valueOf(k)+ "\" class=\"child-of-node-" + String.valueOf(i)+String.valueOf(j)+ "\">");
-							div.append("<td nowrap><span class=\"file\">"+equipoNombre+"</span></td>");
-							div.append("<td>" + comentario + "</td>");
-							div.append("<td>" + usuarioNombre + "</td>");
-							div.append("</tr>");
+								div.append("<tr id=\"node-" + String.valueOf(i)+String.valueOf(j) + String.valueOf(k)+ "\" class=\"child-of-node-" + String.valueOf(i)+String.valueOf(j)+ "\">");
+								div.append("<td nowrap><span class=\"file\">"+equipoNombre+"</span></td>");
+								div.append("<td>" + comentario.getValue() + "</td>");
+								div.append("<td>" + usuarioNombre + "</td>");
+								div.append("</tr>");
+							
+							}
 							
 							//usuarioAnterior=usuarioNombre;
 						}
