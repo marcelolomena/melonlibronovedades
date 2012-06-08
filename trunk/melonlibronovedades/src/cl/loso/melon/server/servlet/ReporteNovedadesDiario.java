@@ -119,7 +119,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 							FontFamily.HELVETICA, 10, Font.NORMAL)));
 					cell1.setPhrase(new Phrase(falla.getEquipoNombre(),
 							new Font(FontFamily.HELVETICA, 10, Font.NORMAL)));
-					cell2.setPhrase(new Phrase(falla.getComentario(), new Font(
+					cell2.setPhrase(new Phrase(falla.getComentario().getValue(), new Font(
 							FontFamily.HELVETICA, 10, Font.NORMAL)));
 					tabla.addCell(cell0);
 					tabla.addCell(cell1);
@@ -279,7 +279,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 								new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
 						cell3.setPhrase(new Phrase(bitacora.getEquipoNombre(),
 								new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
-						cell4.setPhrase(new Phrase(bitacora.getComentario(),
+						cell4.setPhrase(new Phrase(bitacora.getComentario().getValue(),
 								new Font(FontFamily.HELVETICA, 8, Font.NORMAL)));
 						tabla.addCell(cell0);
 						tabla.addCell(cell1);

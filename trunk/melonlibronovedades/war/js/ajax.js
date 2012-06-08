@@ -623,11 +623,10 @@ function editarVisitaLVS2(idUsuario,idVisita){
 				}				
 				
 				if(!$.isEmptyObject(result.bitacoraList)){
-					$.each(result.bitacoraList,function(index, value){			
+					$.each(result.bitacoraList,function(index, value){		
 						filaEquipo +="<div id=\"tabs-" + value.equipo + "\">";
 						filaEquipo +="<input type=\"hidden\" id=\"tab" + value.equipo + "Selected\"/>";
-						//filaEquipo +="<div style=\"float:left;\"><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.equipo + "\" id=\"comentario" + value.equipo + "\">" + value.comentario+ "</textarea></div>";
-						filaEquipo +="<p><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.equipo + "\" id=\"comentario" + value.equipo + "\">" + value.comentario+ "</textarea>";
+						filaEquipo +="<p><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.equipo + "\" id=\"comentario" + value.equipo + "\">" + value.comentario.value+ "</textarea>";
 						filaEquipo +="<div id=\"file-uploader-" + value.equipo + "\"></div></p>"				
 						filaEquipo +="</div>";	
 					});			
@@ -724,7 +723,7 @@ function ingresoNovedad(idUsuario){
 				$.each(result.equipoList,function(index, value){			
 					filaEquipo +="<div id=\"tabs-" + value.key.id + "\">";
 					filaEquipo +="<input type=\"hidden\" id=\"tab" + value.key.id + "Selected\"/>";
-					filaEquipo +="<p><textarea maxlength=\"500\" rows=\"10\" cols=\"50\" name=\"comentario_" + value.key.id + "\" id=\"comentario" + value.key.id + "\"></textarea></p>";
+					filaEquipo +="<p><textarea rows=\"10\" cols=\"50\" name=\"comentario_" + value.key.id + "\" id=\"comentario" + value.key.id + "\"></textarea></p>";
 					filaEquipo +="<div style=\"float:left;\" id=\"file-uploader-" + value.key.id + "\"></div>"				
 					filaEquipo +="</div>";	
 				});				
@@ -1312,7 +1311,7 @@ function ReporteNovedad(formInput){
 								}							
 								filaItem += "<td align='left' nowrap>" + value.turnoNombre+ "</td>";
 								filaItem += "<td align='left' nowrap>" + value.equipoNombre+ "</td>";								
-								filaItem += "<td align='left'>" + value.comentario+ "</td>";
+								filaItem += "<td align='left'>" + value.comentario.value+ "</td>";
 								filaItem += "</tr>";
 							});	
 						}else{

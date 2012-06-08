@@ -19,7 +19,7 @@ public class BitacoraLN {
 	public BitacoraLN(Entity entity) {
 		this.key=entity.getKey();
 		this.fecha = (Date)entity.getProperty("fecha");
-		this.comentario = (String)entity.getProperty("comentario");
+		this.comentario = (Text)entity.getProperty("comentario");
 		this.equipo = (Long)entity.getProperty("equipo");
 		this.equipoNombre = (String)entity.getProperty("equipoNombre");
 		this.turno = (Long)entity.getProperty("turno");
@@ -30,7 +30,7 @@ public class BitacoraLN {
 	}
 	
 	
-	public BitacoraLN(Date fecha, String comentario, Long equipo,
+	public BitacoraLN(Date fecha, Text comentario, Long equipo,
 			String equipoNombre, Long turno, String turnoNombre, Long negocio,
 			String negocioNombre,String usuarioNombre) {
 		this.fecha = fecha;
@@ -54,7 +54,8 @@ public class BitacoraLN {
     private Date fecha; 
     
     @Persistent
-    private String comentario;
+    private Text comentario;
+    //private String comentario;
     
     @Persistent
     private Text texto;    
@@ -92,14 +93,6 @@ public class BitacoraLN {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	public String getComentario() {
-		return comentario;
-	}
-
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
 	}
 
 	public Long getEquipo() {
@@ -188,6 +181,16 @@ public class BitacoraLN {
 
 	public void setTexto(Text texto) {
 		this.texto = texto;
+	}
+
+
+	public Text getComentario() {
+		return comentario;
+	}
+
+
+	public void setComentario(Text comentario) {
+		this.comentario = comentario;
 	}     
 
 }

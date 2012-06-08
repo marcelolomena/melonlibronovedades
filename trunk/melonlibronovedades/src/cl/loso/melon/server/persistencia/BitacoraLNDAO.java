@@ -23,6 +23,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.datastore.Text;
 
 public class BitacoraLNDAO {
 
@@ -170,8 +171,8 @@ public class BitacoraLNDAO {
 			
 			List<Entity> entities = datastore.prepare(q).asList(fetchOptions);
 			for (Entity entity : entities) {
-				String comentario = (String) entity.getProperty("comentario");
-				if (comentario != null && comentario.trim().length()>0) {
+				Text comentario = (Text) entity.getProperty("comentario");
+				if (comentario.getValue() != null && comentario.getValue().trim().length()>0) {
 					bitacoraList.add(new BitacoraLN(entity));
 				}
 			}

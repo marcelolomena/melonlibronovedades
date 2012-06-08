@@ -47,6 +47,7 @@ body { font-size: 62.5%; }
 	              })
 	    );	
 		$("input:button, input:submit").button();
+		/*
 	      $('textarea[maxlength]').keyup(function () {
 	          var limit = parseInt($(this).attr('maxlength'));
 	          var text = $(this).val();
@@ -55,7 +56,8 @@ body { font-size: 62.5%; }
 	              var new_text = text.substr(0, limit);
 	              $(this).val(new_text);
 	          }
-	      });        
+	      }); 
+		*/
 		$("#idUsuario").attr('value', idUsuario);
 		$("#accion").attr('value', accion);
 		if (accion == 'editar') {
