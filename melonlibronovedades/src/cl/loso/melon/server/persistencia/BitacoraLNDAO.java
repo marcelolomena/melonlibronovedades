@@ -36,8 +36,8 @@ public class BitacoraLNDAO {
 		List<BitacoraLN> detached = null;
 		Query query = null;
 		try {
-			Key k1 = KeyFactory.createKey(UsuarioLN.class.getSimpleName(), Long
-					.valueOf(idUsuario));
+			Key k1 = KeyFactory.createKey(UsuarioLN.class.getSimpleName(),
+					Long.valueOf(idUsuario));
 			Key k2 = KeyFactory.createKey(k1, NovedadLN.class.getSimpleName(),
 					Long.valueOf(idNovedad));
 			novedad = pm.getObjectById(NovedadLN.class, k2);
@@ -112,10 +112,12 @@ public class BitacoraLNDAO {
 
 			List<Entity> entities = datastore.prepare(q).asList(fetchOptions);
 			for (Entity entity : entities) {
-				String comentario = (String) entity.getProperty("comentario");
-				if (comentario != null && comentario.trim().length()>0) {
+				Text comentario = (Text) entity.getProperty("comentario");
+				if (comentario.getValue() != null
+						&& comentario.getValue().trim().length() > 0) {
 					bitacoraList.add(new BitacoraLN(entity));
 				}
+
 			}
 
 		} catch (Exception e) {
@@ -124,7 +126,7 @@ public class BitacoraLNDAO {
 		}
 		return bitacoraList;
 	}
-	
+
 	public static List<BitacoraLN> obtenerNovedadesAyer() {
 
 		List<BitacoraLN> bitacoraList = new ArrayList<BitacoraLN>();
@@ -136,54 +138,53 @@ public class BitacoraLNDAO {
 			com.google.appengine.api.datastore.Query q = new com.google.appengine.api.datastore.Query(
 					BitacoraLN.class.getSimpleName());
 
-			Calendar cal1 = new GregorianCalendar(); 
-			cal1.add(Calendar.DATE, -2); 
+			Calendar cal1 = new GregorianCalendar();
+			cal1.add(Calendar.DATE, -2);
 			cal1.set(Calendar.HOUR_OF_DAY, 23);
 			cal1.set(Calendar.MINUTE, 59);
 			cal1.set(Calendar.SECOND, 59);
 			cal1.set(Calendar.MILLISECOND, 999);
-			
+
 			Date ayer1 = cal1.getTime();
 
-			Calendar cal2 = new GregorianCalendar(); 
-			cal2.add(Calendar.DATE, -1); 
+			Calendar cal2 = new GregorianCalendar();
+			cal2.add(Calendar.DATE, -1);
 			cal2.set(Calendar.HOUR_OF_DAY, 23);
 			cal2.set(Calendar.MINUTE, 59);
 			cal2.set(Calendar.SECOND, 59);
 			cal2.set(Calendar.MILLISECOND, 999);
-			
+
 			Date ayer2 = cal2.getTime();
-			
-			//log.info("ayer1 : " + ayer1);
-			//log.info("ayer2 : " + ayer2);
-			
-			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL,
-					ayer1);
-			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL,
-					ayer2);			
-			//Falta el maldito negocio!!!
-			//q.addFilter("negocio", FilterOperator.EQUAL, idNegocio);
+
+			// log.info("ayer1 : " + ayer1);
+			// log.info("ayer2 : " + ayer2);
+
+			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL, ayer1);
+			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL, ayer2);
+			// Falta el maldito negocio!!!
+			// q.addFilter("negocio", FilterOperator.EQUAL, idNegocio);
 			q.addSort("fecha", SortDirection.DESCENDING);
 			q.addSort("equipoNombre", SortDirection.ASCENDING);
 
 			FetchOptions fetchOptions = FetchOptions.Builder.withDefaults();
-			//log.info("query : " + q.toString());
-			
+			// log.info("query : " + q.toString());
+
 			List<Entity> entities = datastore.prepare(q).asList(fetchOptions);
 			for (Entity entity : entities) {
 				Text comentario = (Text) entity.getProperty("comentario");
-				if (comentario.getValue() != null && comentario.getValue().trim().length()>0) {
+				if (comentario.getValue() != null
+						&& comentario.getValue().trim().length() > 0) {
 					bitacoraList.add(new BitacoraLN(entity));
 				}
 			}
-			if(bitacoraList.isEmpty())log.info("no hay novedades");
+			if (bitacoraList.isEmpty())
+				log.info("no hay novedades");
 		} catch (Exception e) {
-			log.error("DAO obtenerNovedadHome2:" + e.getMessage());
+			log.error("DAO obtenerNovedadesAyer:" + e.getMessage());
 		}
-		return bitacoraList;		
-	}	
-	
-	
+		return bitacoraList;
+	}
+
 	public static List<BitacoraLN> obtenerNovedadesAyer(Long idNegocio) {
 
 		List<BitacoraLN> bitacoraList = new ArrayList<BitacoraLN>();
@@ -195,50 +196,50 @@ public class BitacoraLNDAO {
 			com.google.appengine.api.datastore.Query q = new com.google.appengine.api.datastore.Query(
 					BitacoraLN.class.getSimpleName());
 
-			Calendar cal1 = new GregorianCalendar(); 
-			cal1.add(Calendar.DATE, -2); 
+			Calendar cal1 = new GregorianCalendar();
+			cal1.add(Calendar.DATE, -2);
 			cal1.set(Calendar.HOUR_OF_DAY, 23);
 			cal1.set(Calendar.MINUTE, 59);
 			cal1.set(Calendar.SECOND, 59);
 			cal1.set(Calendar.MILLISECOND, 999);
-			
+
 			Date ayer1 = cal1.getTime();
 
-			Calendar cal2 = new GregorianCalendar(); 
-			cal2.add(Calendar.DATE, -1); 
+			Calendar cal2 = new GregorianCalendar();
+			cal2.add(Calendar.DATE, -1);
 			cal2.set(Calendar.HOUR_OF_DAY, 23);
 			cal2.set(Calendar.MINUTE, 59);
 			cal2.set(Calendar.SECOND, 59);
 			cal2.set(Calendar.MILLISECOND, 999);
-			
+
 			Date ayer2 = cal2.getTime();
-			
-			//log.info("ayer1 : " + ayer1);
-			//log.info("ayer2 : " + ayer2);
-			
-			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL,
-					ayer1);
-			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL,
-					ayer2);			
+
+			// log.info("ayer1 : " + ayer1);
+			// log.info("ayer2 : " + ayer2);
+
+			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL, ayer1);
+			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL, ayer2);
 			q.addFilter("negocio", FilterOperator.EQUAL, idNegocio);
-			
+
 			q.addSort("fecha", SortDirection.DESCENDING);
 			q.addSort("equipoNombre", SortDirection.ASCENDING);
 
 			FetchOptions fetchOptions = FetchOptions.Builder.withDefaults();
-			//log.info("query : " + q.toString());
-			
+
 			List<Entity> entities = datastore.prepare(q).asList(fetchOptions);
+
 			for (Entity entity : entities) {
-				String comentario = (String) entity.getProperty("comentario");
-				if (comentario != null && comentario.trim().length()>0) {
+				Text comentario = (Text) entity.getProperty("comentario");
+				if (comentario.getValue() != null
+						&& comentario.getValue().trim().length() > 0) {
 					bitacoraList.add(new BitacoraLN(entity));
 				}
 			}
-			if(bitacoraList.isEmpty())log.info("no hay novedades para el negocio " + idNegocio);
+			if (bitacoraList.isEmpty())
+				log.info("no hay novedades para el negocio " + idNegocio);
 		} catch (Exception e) {
-			log.error("DAO obtenerNovedadHome2:" + e.getMessage());
+			log.error("DAO obtenerNovedadesAyer:" + e.getMessage());
 		}
-		return bitacoraList;		
-	}		
+		return bitacoraList;
+	}
 }
