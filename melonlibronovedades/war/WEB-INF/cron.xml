@@ -10,7 +10,7 @@
   <cron>
     <url>/reportenovedadesdiario</url>
     <description>Mail diario de novedades</description>
-    <schedule>every day 08:00</schedule>
+    <schedule>every day 08:01</schedule>
     <timezone>America/Santiago</timezone>
     <target>reporte-novedades-diario</target>    
   </cron>  
