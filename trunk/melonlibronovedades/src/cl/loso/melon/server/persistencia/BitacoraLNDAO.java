@@ -138,13 +138,13 @@ public class BitacoraLNDAO {
 			com.google.appengine.api.datastore.Query q = new com.google.appengine.api.datastore.Query(
 					BitacoraLN.class.getSimpleName());
 
+			/*
 			Calendar cal1 = new GregorianCalendar();
 			cal1.add(Calendar.DATE, -2);
 			cal1.set(Calendar.HOUR_OF_DAY, 23);
 			cal1.set(Calendar.MINUTE, 59);
 			cal1.set(Calendar.SECOND, 59);
 			cal1.set(Calendar.MILLISECOND, 999);
-
 			Date ayer1 = cal1.getTime();
 
 			Calendar cal2 = new GregorianCalendar();
@@ -153,11 +153,26 @@ public class BitacoraLNDAO {
 			cal2.set(Calendar.MINUTE, 59);
 			cal2.set(Calendar.SECOND, 59);
 			cal2.set(Calendar.MILLISECOND, 999);
-
 			Date ayer2 = cal2.getTime();
+			*/
+			Calendar cal1 = new GregorianCalendar();
+			cal1.add(Calendar.DATE, -1);
+			cal1.set(Calendar.HOUR_OF_DAY, 7);
+			cal1.set(Calendar.MINUTE, 59);
+			cal1.set(Calendar.SECOND, 59);
+			cal1.set(Calendar.MILLISECOND, 999);
+			Date ayer1 = cal1.getTime();
 
-			// log.info("ayer1 : " + ayer1);
-			// log.info("ayer2 : " + ayer2);
+			Calendar cal2 = new GregorianCalendar();
+			//cal2.add(Calendar.DATE, -1);
+			cal2.set(Calendar.HOUR_OF_DAY, 8);
+			cal2.set(Calendar.MINUTE, 00);
+			cal2.set(Calendar.SECOND, 00);
+			cal2.set(Calendar.MILLISECOND, 999);
+			Date ayer2 = cal2.getTime();			
+
+			log.info("reporte novedades diario ayer : " + ayer1);
+			log.info("reporte novedades diario hoy : " + ayer2);
 
 			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL, ayer1);
 			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL, ayer2);
@@ -195,7 +210,7 @@ public class BitacoraLNDAO {
 
 			com.google.appengine.api.datastore.Query q = new com.google.appengine.api.datastore.Query(
 					BitacoraLN.class.getSimpleName());
-
+/*
 			Calendar cal1 = new GregorianCalendar();
 			cal1.add(Calendar.DATE, -2);
 			cal1.set(Calendar.HOUR_OF_DAY, 23);
@@ -213,9 +228,25 @@ public class BitacoraLNDAO {
 			cal2.set(Calendar.MILLISECOND, 999);
 
 			Date ayer2 = cal2.getTime();
+*/
+			Calendar cal1 = new GregorianCalendar();
+			cal1.add(Calendar.DATE, -1);
+			cal1.set(Calendar.HOUR_OF_DAY, 7);
+			cal1.set(Calendar.MINUTE, 59);
+			cal1.set(Calendar.SECOND, 59);
+			cal1.set(Calendar.MILLISECOND, 999);
+			Date ayer1 = cal1.getTime();
 
-			// log.info("ayer1 : " + ayer1);
-			// log.info("ayer2 : " + ayer2);
+			Calendar cal2 = new GregorianCalendar();
+			//cal2.add(Calendar.DATE, -1);
+			cal2.set(Calendar.HOUR_OF_DAY, 8);
+			cal2.set(Calendar.MINUTE, 00);
+			cal2.set(Calendar.SECOND, 00);
+			cal2.set(Calendar.MILLISECOND, 999);
+			Date ayer2 = cal2.getTime();				
+
+			//log.info("reporte diario de novedades ayer : " + ayer1);
+			//log.info("reporte diario de novedades hoy  : " + ayer2);
 
 			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL, ayer1);
 			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL, ayer2);
