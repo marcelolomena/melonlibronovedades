@@ -70,7 +70,7 @@ public class NovedadLNBO {
 					.valueOf(usuario.getIdNegocio()));
 			NovedadLN novedad = new NovedadLN(fecha_novedad, negocio.getId(),
 					negocio.getNombre(), usuario, turno.getId(), turno
-							.getDescripcion(), empleado);
+							.getDescripcion(), empleado,turno.getOrden());
 
 			long tiempoInicio = System.currentTimeMillis();
 

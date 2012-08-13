@@ -304,8 +304,9 @@ public class BitacoraLNDAO {
 			q.addFilter("fecha", FilterOperator.GREATER_THAN_OR_EQUAL, ayer1);
 			q.addFilter("fecha", FilterOperator.LESS_THAN_OR_EQUAL, ayer2);
 			q.addFilter("negocio", FilterOperator.EQUAL, idNegocio);
+			
 			q.addSort("fecha", SortDirection.DESCENDING);
-			//q.addSort("equipoNombre", SortDirection.ASCENDING);
+			q.addSort("orden", SortDirection.ASCENDING);
 
 			FetchOptions fetchOptions = FetchOptions.Builder.withDefaults();
 
@@ -318,7 +319,7 @@ public class BitacoraLNDAO {
 					Text comentario = (Text) entidad.getProperty("comentario");
 					if (comentario.getValue() != null
 							&& comentario.getValue().trim().length() > 0) {
-						bitacoraList.add(new BitacoraLN(entity));
+						bitacoraList.add(new BitacoraLN(entidad));
 					}				
 				}
 				
