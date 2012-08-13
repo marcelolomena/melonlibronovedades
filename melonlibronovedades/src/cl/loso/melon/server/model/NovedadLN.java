@@ -14,7 +14,7 @@ import com.google.appengine.api.datastore.Key;
 public class NovedadLN {
 
 	public NovedadLN(Date fecha, Long negocio, String negocioNombre,
-			UsuarioLN usuario, Long turno, String turnoNombre, String empleado) {
+			UsuarioLN usuario, Long turno, String turnoNombre, String empleado,Integer orden) {
 		this.fecha = fecha;
 		this.negocio = negocio;
 		this.negocioNombre = negocioNombre;
@@ -22,6 +22,7 @@ public class NovedadLN {
 		this.turno = turno;
 		this.turnoNombre = turnoNombre;
 		this.empleado = empleado;
+		this.orden = orden;
 	}
 
 	@PrimaryKey
@@ -47,7 +48,10 @@ public class NovedadLN {
 	private String turnoNombre;    
     
     @Persistent
-    private String empleado;     
+    private String empleado;  
+    
+    @Persistent
+    private Integer orden;
     
 	@Persistent(mappedBy = "novedad")
 	private List<BitacoraLN> comentarios;
@@ -118,5 +122,13 @@ public class NovedadLN {
 
 	public void setNegocioNombre(String negocioNombre) {
 		this.negocioNombre = negocioNombre;
+	}
+
+	public Integer getOrden() {
+		return orden;
+	}
+
+	public void setOrden(Integer orden) {
+		this.orden = orden;
 	}
 }
