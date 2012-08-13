@@ -3,6 +3,7 @@ package cl.loso.melon.server.negocio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -55,7 +56,13 @@ public class NovedadLNBO {
 			String idTurno, String empleado, Hashtable<Long, String> ht)
 			throws Exception {
 		try {
-			DateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+			int hora, minutos;
+			Calendar calendario = Calendar.getInstance();
+			hora =calendario.get(Calendar.HOUR_OF_DAY);
+			minutos = calendario.get(Calendar.MINUTE);
+			fecha=fecha + " " + hora + ":" + minutos;
+			
+			DateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			Date fecha_novedad = (Date) formato1.parse(fecha);
 			UsuarioLN usuario = UsuarioLNBO.editarUsuarioLN(idUsuario);
 			TipoLN turno = TipoLNBO.editarTipoLN(idTurno);
@@ -103,7 +110,13 @@ public class NovedadLNBO {
 			String idNovedad, String idTurno, String empleado,
 			Hashtable<Long, String> ht) throws Exception {
 		try {
-			DateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy");
+			int hora, minutos;
+			Calendar calendario = Calendar.getInstance();
+			hora =calendario.get(Calendar.HOUR_OF_DAY);
+			minutos = calendario.get(Calendar.MINUTE);
+			fecha=fecha + " " + hora + ":" + minutos;
+			
+			DateFormat formato1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			Date fecha_novedad = (Date) formato1.parse(fecha);
 
 			NovedadLNDAO.actualizar(Long.valueOf(idUsuario), Long

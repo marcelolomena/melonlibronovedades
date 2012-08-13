@@ -169,7 +169,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 					BodyPart messageBodyPart = new MimeBodyPart();
 					// Fill the message
 					messageBodyPart
-							.setText("Estimado usuario, adjuntan las novedades del dia anterior");
+							.setText("Estimado usuario, se adjuntan las novedades del dia anterior");
 
 					Multipart multipart = new MimeMultipart();
 					multipart.addBodyPart(messageBodyPart);
@@ -219,7 +219,7 @@ public class ReporteNovedadesDiario extends HttpServlet {
 				NegocioLN negocio = NegocioLNBO.editarNegocioLN(String
 						.valueOf(idNegocio.longValue()));
 				String txtNegocio = negocio.getNombre();
-				bitacoraList = BitacoraLNDAO.obtenerNovedadesAyer(idNegocio);
+				bitacoraList = BitacoraLNDAO.obtenerNovedadesParaCorreo(idNegocio);
 
 				if (!bitacoraList.isEmpty()) {
 
