@@ -27,5 +27,10 @@
 <datastore-index kind="BitacoraLN" ancestor="false" source="manual">
         <property name="fecha" direction="desc"/>
         <property name="equipoNombre" direction="asc"/>
-    </datastore-index>                 
+    </datastore-index>  
+<datastore-index kind="NovedadLN" ancestor="false" source="manual">
+        <property name="negocio" direction="asc"/>
+        <property name="fecha" direction="desc"/>
+        <property name="orden" direction="asc"/>
+    </datastore-index>                   
 </datastore-indexes>

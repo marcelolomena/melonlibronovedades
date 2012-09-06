@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import cl.loso.melon.server.model.TipoLN;
@@ -53,12 +56,27 @@ public class TipoLNBO {
 	public static long obtenerTurnoDefault() throws Exception {
 		long orden=0;
 		try {
-			Calendar fechadehoy = Calendar.getInstance();
+			final String  DATE_TIME_FORMAT = "yyyyMMdd-HH:mm:ss";
+			SimpleDateFormat  sdf = new SimpleDateFormat (DATE_TIME_FORMAT);
+			
+			TimeZone correctTZ = TimeZone.getTimeZone("America/Santiago");
+
+			sdf.setTimeZone(correctTZ);
+
+			Date currentTime= sdf.parse(sdf.format(new Date()));
+			
+	
+			Calendar fechadehoy = Calendar.getInstance(correctTZ);
+			fechadehoy.setTime(currentTime);
+			
+			log.info("la hora chilenisima es : " + currentTime);
+
+			//Date fechadehoy= new Date();
  			Calendar cal1 = Calendar.getInstance();
 			Calendar cal2 = Calendar.getInstance();
 			
-			fechadehoy.set(fechadehoy.get(Calendar.YEAR), fechadehoy.get(Calendar.MONTH), fechadehoy
-					.get(Calendar.DAY_OF_MONTH), fechadehoy.get(Calendar.HOUR_OF_DAY), fechadehoy.get(Calendar.MINUTE));
+			//fechadehoy.set(fechadehoy.get(Calendar.YEAR), fechadehoy.get(Calendar.MONTH), fechadehoy
+					//.get(Calendar.DAY_OF_MONTH), fechadehoy.get(Calendar.HOUR_OF_DAY), fechadehoy.get(Calendar.MINUTE));
 			 
 			//log.info("HOYDIA : " + new Date());
 			List<TipoLN> turnolst=TipoLNDAO.obtener();
@@ -74,13 +92,15 @@ public class TipoLNBO {
 				cal2.set(cal2.get(Calendar.YEAR), cal2.get(Calendar.MONTH), cal2
 						.get(Calendar.DAY_OF_MONTH), ter.get(Calendar.HOUR_OF_DAY), ter.get(Calendar.MINUTE));
 				
-				//log.info("cal1 : " + cal1.getTime());
-				//log.info("cal2 : " + cal2.getTime());
-				//log.info("ahora2 : " + fechadehoy.getTime());
+				log.info("cal1 : " + cal1.getTime());
+				log.info("cal2 : " + cal2.getTime());
+				//log.info("la hora actual es : " + fechadehoy.getTime());
+				
 				
 				if( timeIsBefore(cal1.getTime(),fechadehoy.getTime()) && timeIsBefore(fechadehoy.getTime(),cal2.getTime()) ){
+					//if( timeIsBefore(cal1.getTime(),fechadehoy) && timeIsBefore(fechadehoy,cal2.getTime()) ){
 					orden=turno.getId();
-					//log.info("orden : " + orden);	
+					log.info("orden : " + orden);	
 					break;
 								
 				}
