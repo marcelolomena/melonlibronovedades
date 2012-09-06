@@ -54,17 +54,6 @@ textarea {display: block;overflow: auto;}
                       display: 'none'
                   })
         );
-        /*
-	      $('textarea[maxlength]').keyup(function () {
-	          var limit = parseInt($(this).attr('maxlength'));
-	          var text = $(this).val();
-	          var chars = text.length;
-	          if (chars > limit) {
-	              var new_text = text.substr(0, limit);
-	              $(this).val(new_text);
-	          }
-	      }); 
-        */
 		$("#idUsuario").attr('value', idUsuario);
 		$("#accion").attr('value', accion);
 		if (accion == 'editar') {

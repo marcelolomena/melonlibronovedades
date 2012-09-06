@@ -327,7 +327,7 @@ public class BitacoraLNDAO {
 			if (bitacoraList.isEmpty())
 				log.info("no hay novedades para el negocio " + idNegocio);
 		} catch (Exception e) {
-			log.error("DAO obtenerNovedadesAyer:" + e.getMessage());
+			log.error("DAO obtenerNovedadesParaCorreo:" + e.getMessage());
 		}
 		return bitacoraList;
 	}	
